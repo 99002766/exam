@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebForm</title>
+    <style>
+      h1{
+        text-align: center;
+      }
+      div{
+        text-align: center;
+      }
+      section{
+        text-align: center;
+      }
+      footer{
+        text-align:  center;
+      }
+
+    </style>
+    <script>
+        function validata() {
+    
+      </script>
+  </head>
+  <h1>User details</h1>
+  <body>
+    <form id="addsser">
+      <section>
+      Name <input type="text" id="username" /> <br />
+      Password <input type="password" id="pass" /> <br />
+      Email <input type="text" id="mail" /> <br />
+      Contact <input type="text" id="phone" /> <br />
+      Date:<input type="date" id="date"/><br/>
+      <input type="radio" name="gender" id="male"/>
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="Female"/>
+      <label for="Female">Female</label><br/>
+    </section>
+      <div>
+      <form action = "/webform.html">
+      <label for="course">select a course</label>
+      <section id="course" name="course"></section>
+      <option value="java">java</option>
+      <option value="c++">c++</option>
+      Submit:<input type="submit" onclick="validata()" />
+      </div>
+      
+    </form>
+    <p id="printhere"></p>
+  </body>
+  <hr/>
+  <footer>&copy;wedAssessment Inc-2020</footer>
+</html>

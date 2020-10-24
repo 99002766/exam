@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <style>
+            h1, nav{
+                height:45px;
+                width: 200%;
+                text-align: center;
+            }
+         
+            div{
+                text-align: center;
+            }
+            
+        </style>
+         <h1>Student Entry</h1>
+         <nav>
+             <a href="#">Read All_Students</a>
+             <a href="#">Entry New_student</a>
+             <a href="#">About page</a>
+         </nav>
+         <div class="section">
+            
+                <tr>
+                    <th>student ID</th>
+                    <th>student Name</th>
+                    <th>student Address</th>
+                    <th>Options</th>
+                </tr>
+           
+        </div>
+        <div class="section">
+            <h2>enter New student</h2>
+            <p>student ID: <input id="newId" /></p>
+            <p>student Name : <input id="newName" /></p>
+            <p>student Address : <input id="newAddress" /></p>
+           
+            <p><button>entered student</button></p>
+        </div>
+        <div>
+    <p>student ID: <input id="studentId"></p>
+    <p>student Name : <input id="studentName"/></p>
+    <p>student Address : <input id="studentAddress"/></p>
+ 
+    <p><button>changes</button></p>
+      </div>
+
+        <script src="/student.js"></script>
+            
+        <script>    
+            const url = "http://localhost:8118/student";
+            function Changes(){
+                let obj ={};
+                obj.studentId = $("#studentId").text();
+                obj.studentName = $("#studentName").val();
+                obj.studentAddress = $("#studentAddress").val();
+            }
+            function findingRecord(){
+                const id = $(this).attr("studentId");
+                let temp = url + "/" + id;
+                $.get(temp, (data) => {
+                    let student = JSON.parse(data);
+                    $("#studentId").text(student.studentId);
+                    $("#studentName").val(student.studentName);
+                    $("#studentAddress").val(student.studentAddress);
+                    })
+            }
+            
+
+            function Changes(){
+                var obj = { };
+                obj.studentId = $("#studentId").val();
+                obj.studentName = $("#studentName").val();
+                obj.studentAddress = $("#studentAddress").val();
+                $.post(url, obj, (data)=>{
+                   
+                })
+            }
+            function showData(){
+                $.get(url, (data)=>{
+                    let array = JSON.parse(data);
+                    for (const student of array) {
+                        const row = `<tr><td>${student.studentId}</td>
+                        <td>${student.studentName}</td><td>${student.studentAddress}</td>
+                        <td><a href="#" class="edit" studentId = ${student.studentId}>Edit</a></tr>`
+                        $("table").append(row);
+                    }
+                    $(".change").click(searchRecord);               
+                })
+                
+            }        
+            function init(){
+                $("a:first").click(showData);
+                $("a:equal(1)").click(showAddDiv);
+                $("button:equal(0)").click(Changes);
+                $("button:equal(1)").click(makeChanges);
+            }
+            $(document).ready(init);
+        </script>
+    </head>
+</html>
